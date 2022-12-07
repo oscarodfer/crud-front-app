@@ -7,6 +7,12 @@ import { Component } from '@angular/core';
 })
 export class DirectiveComponent {
   allLanguages: string[] = ['TypeScript', 'JavaScript', 'Java SE', 'C#', 'PHP'];
-  
-  constructor() {}
+  isListVisible: boolean = true;
+
+  // Toggles the list's ngIf visibility on and off
+  changeListVisibility(): void {
+    this.isListVisible = !this.isListVisible;
+  }
+
+  constructor() { }
 }

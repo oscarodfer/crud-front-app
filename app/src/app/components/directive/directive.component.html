@@ -1,8 +1,12 @@
+<button (click)="changeListVisibility()" type="button" class="button button-active btn btn-primary my-3">
+    {{isListVisible? 'Hide' : "Show"}}
+</button>
+
 <div class="card">
     <div class="card-header">
         Language list
     </div>
-    <ul class="list-group">
+    <ul class="list-group" *ngIf="isListVisible">
         <li class="list-group-item" *ngFor="let language of allLanguages">
             {{language}}
         </li>

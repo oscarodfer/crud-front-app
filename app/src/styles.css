@@ -1,1 +1,118 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+    --color-primary-blue: #0066A1;
+    --color-primary-white: #FFFFFF;
+    --color-primary-black: #000000;
+    --color-primary-grey: #808080;
+
+    --color-secondary-darkblue: #06486E;
+    --color-secondary-orange: #FA6119;
+    --color-secondary-gold: #9E9500;
+    --color-secondary-purple: #6639B7;
+    --color-secondary-pink: #A626AA;
+    --color-secondary-teal: #00A59C;
+
+    --color-complementary-green: #3F9C35;
+    --color-complementary-fucsia: #D71F85;
+    --color-complementary-lightgrey: #898D8D;
+    --color-complementary-lightblue: #00AFD8;
+    --color-complementary-blue: #0089C4;
+
+    --color-alert-success: #417505;
+    --color-alert-error: #E24B51;
+    --color-alert-warning: #F5A623;
+}
+
+@font-face {
+    font-family: 'Stag-Medium';
+    src: local('Stag-Medium'), url('./assets/otf/Stag-Medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    unicode-range: "U+0-10FFFF";
+}
+
+@font-face {
+    font-family: 'Stag-Sans-Book';
+    src: local('StagSans-Book'), url('./assets/otf/StagSans-Book.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    unicode-range: "U+0-10FFFF";
+}
+
+h1 {
+    font-family: Stag-Medium;
+    font-size: 34px;
+    line-height: 40px;
+}
+
+h2 {
+    font-family: Stag-Medium;
+    font-size: 25px;
+    line-height: 30px;
+}
+
+h3 {
+    font-family: Stag-Medium;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+h4 {
+    font-family: Stag-Sans-Book;
+    font-size: 18px;
+    line-height: 23px;
+}
+
+.subtitle1 {
+    font-family: Stag-Sans-Book;
+    font-size: 16px;
+    line-height: 21px;
+}
+
+.subtitle2 {
+    font-family: Stag-Sans-Book;
+    font-size: 14px;
+    line-height: 19px;
+}
+
+.bigerText {
+    font-family: Stag-Sans-Book;
+    font-size: 20px;
+    line-height: 33px;
+}
+
+.quote {
+    font-family: Stag-Sans-Book;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.bodyText {
+    font-family: Stag-Sans-Book;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.smallText {
+    font-family: Stag-Sans-Book;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.button {
+    font-family: Stag-Sans-Book;
+    color: var(--color-primary-white);
+}
+
+.button--active {
+    background-color: var(--color-primary-blue);
+}
+
+.button--pressed {
+    background-color: var(--color-secondary-darkblue);
+}
+
+.button--disabled {
+    background-color: var(--color-complementary-lightgrey);
+}
