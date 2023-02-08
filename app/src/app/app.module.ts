@@ -8,11 +8,13 @@ import { DirectiveComponent } from './components/directive/directive.component';
 import { ClientComponent } from './components/client/client.component';
 import { ClientService } from './components/client/client.service';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http'
+
 
 const ROUTES: Routes = [
-  {path: '', redirectTo: '/clients', pathMatch: 'full'},
-  {path: 'directives', component: DirectiveComponent},
-  {path: 'clients', component: ClientComponent}
+  { path: '', redirectTo: '/clients', pathMatch: 'full' },
+  { path: 'directives', component: DirectiveComponent },
+  { path: 'clients', component: ClientComponent }
 ]
 
 @NgModule({
@@ -23,8 +25,10 @@ const ROUTES: Routes = [
     DirectiveComponent,
     ClientComponent
   ],
+
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [ClientService],

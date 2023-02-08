@@ -1,7 +1,7 @@
 
 # Angular SPA CRUD
 
-Project created practice the development of a single page application with Angular.
+Project created to practice the development of a single page application with Angular.
 
 
 
