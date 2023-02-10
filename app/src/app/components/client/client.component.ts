@@ -41,14 +41,14 @@ export class ClientComponent implements OnInit {
       if (result.isConfirmed) {
         this.clientService.deleteClient(client.id).subscribe(
           response => {
-            this.clients = this.clients.filter(cli => cli !== client)
             Swal.fire({
               position: 'center',
               icon: 'success',
               title: `Client ${client.name} deleted successfully`,
               showConfirmButton: false,
-              timer: 1500
-            })
+              timer: 2000
+            });
+            this.clients = this.clients.filter(cli => cli !== client);
           }
         )
       }    

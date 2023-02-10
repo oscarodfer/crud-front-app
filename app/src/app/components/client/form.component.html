@@ -1,33 +1,65 @@
+<ul class="alert alert-danger" *ngIf="errors?.length > 0">
+    <li *ngFor="let err of errors">
+        {{err}}
+    </li>
+</ul>
+
 <div class="card bg-dark text-white">
     <div *ngIf="!client.id else elseTitle" class="card-header">{{ newTitle }}</div>
     <ng-template #elseTitle>
         <div class="card-header">{{ updateTitle }}</div>
     </ng-template>
     <div class="card-body">
-        <form>
+        
+        <form #clientForm="ngForm">
+            
             <div class="form-group row">
                 <label for="" class="col-form-label col-sm-2">Name</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="client.name" name="name">
+                    <input type="text" class="form-control" [(ngModel)]="client.name" name="name" #name="ngModel"> <!-- required minlength="4" -->
+                    <div class="alert alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+                        <div *ngIf="name.errors.required">
+                            Name field is required.
+                        </div>
+                        <div *ngIf="name.errors.minlength">
+                            Name field must have at least 4 characters.
+                        </div>
+                    </div>
                 </div>
             </div>
+            
             <div class="form-group row">
                 <label for="" class="col-form-label col-sm-2">Surname</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="client.surname" name="surname">
+                <div class="col-sm-6"> 
+                    <input type="text" class="form-control" [(ngModel)]="client.surname" name="surname" #surname="ngModel"> <!-- required -->
+                    <div class="alert alert-danger" *ngIf="surname.invalid && (surname.dirty || surname.touched)">
+                        <div *ngIf="surname.errors.required">
+                            Surname field is required.
+                        </div>
+                    </div>
                 </div>
             </div>
+
             <div class="form-group row">
                 <label for="" class="col-form-label col-sm-2">Email</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="client.email" name="email">
+                    <input type="text" class="form-control" [(ngModel)]="client.email" name="email" #email="ngModel"> <!-- required email -->
+                </div>
+                <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+                    <div *ngIf="email.errors.required">
+                        Email field is required.
+                    </div>
+                    <div *ngIf="email.errors.email">
+                        Email field must have a correct format.
+                    </div>
                 </div>
             </div>
+            
             <div class="form-group row">
                 <div class="col-sm-6">
-                    <button class="btn btn-primary" role="button" (click)="createNewClient()" *ngIf="!client.id else elseButton">Create new client</button>
+                    <button class="btn btn-primary" role="button" (click)="createNewClient()" *ngIf="!client.id else elseButton" [disabled]="!clientForm.form.valid">Create new client</button>
                     <ng-template #elseButton>
-                        <button class="btn btn-primary" role="button" (click)="updateClient()">Update client</button>
+                        <button class="btn btn-primary" role="button" (click)="updateClient()" [disabled]="!clientForm.form.valid">Update client</button>
                     </ng-template>
                 </div>
             </div>

@@ -13,6 +13,7 @@ export class FormComponent {
   public client: Client = new Client();
   public newTitle: string = "New Client";
   public updateTitle: string = "Update Client";
+  public errors: string[];
 
   constructor(
     private clientService: ClientService,
@@ -38,32 +39,44 @@ export class FormComponent {
   }
 
   public createNewClient(): void {
-    this.clientService.createNewClient(this.client).subscribe(
-      client => {
-        this.router.navigate(['/clients']);
+    this.clientService.createNewClient(this.client).subscribe({
+      next: (json) => {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Client created successfully',
+          title: `${json.message} ${json.client.name}`,
           showConfirmButton: false,
-          timer: 1500
+          timer: 2000
         })
+      },
+      error: (err) => {
+        this.errors = err.error.errors as string[];
+        console.error(err.status + " - " + err.error.errors);
+      },
+      complete: () => {
+        this.router.navigate(['/clients']);
       }
-    );
+    });
   }
 
   public updateClient(): void {
-    this.clientService.updateClient(this.client).subscribe(
-      client => {
-        this.router.navigate(['/clients']);
+    this.clientService.updateClient(this.client).subscribe({
+      next: (json) => {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: `Client ${client.name} updated successfully`,
+          title: `${json.message} ${json.client.name}`,
           showConfirmButton: false,
-          timer: 1500
+          timer: 2000
         })
+      },
+      error: (err) => {
+        this.errors = err.error.errors as string[];
+        console.error(err.status + " - " + err.error.errors);
+      },
+      complete: () => {
+        this.router.navigate(['/clients']);
       }
-    );
+    });
   }
 }
